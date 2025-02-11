@@ -12,7 +12,7 @@ This project implements a dynamic surge pricing system for a food delivery platf
 ## Obtaining Weather API Key
 
 1. Sign up for a RapidAPI account at https://rapidapi.com/
-2. Subscribe to the "Open Weather Map" API: https://rapidapi.com/community/api/open-weather-map/
+2. Subscribe to the "Open Weather Map" API: https://rapidapi.com/cedricnoguera/api/open-weather-map27
 3. After subscribing, go to the "Endpoints" tab and find your API key (X-RapidAPI-Key)
 4. Copy this key; you'll need it for the `.env` file in the project setup
 
