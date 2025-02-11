@@ -27,23 +27,23 @@ This project implements a dynamic surge pricing system for a food delivery platf
 
 2. Docker Setup:
 
-  Create a .env file in the Root directory with the following variables:
+    Create a .env file in the Root directory with the following variables:
 
-  ```
-  POSTGRE_DB=surge_pricing
-  POSTGRE_USER=your_user
-  POSTGRE_PASS=your_password
-  POSTGRE_PORT=5432
-  ```
+    ```
+    POSTGRE_DB=surge_pricing
+    POSTGRE_USER=your_user
+    POSTGRE_PASS=your_password
+    POSTGRE_PORT=5432
+    ```
 
-  Build and Start the docker containers using docker-compose file:
+    Build and Start the docker containers using docker-compose file:
 
-  ```bash
-  docker compose --build up -d
+    ```bash
+    docker compose --build up -d
     
-  ```
+    ```
 
-  This start postgresql and redis containers.
+    This start postgresql and redis containers.
 
 3. Backend Setup:
 
