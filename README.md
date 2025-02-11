@@ -5,78 +5,11 @@ This project implements a dynamic surge pricing system for a food delivery platf
 ## Prerequisites
 
 - Node.js (v14 or later)
-- PostgreSQL
-- Redis
+- Docker
 - Git
 - RapidAPI account (for weather data)
 
-## System Setup
-
-### PostgreSQL Setup
-
-1. Install PostgreSQL if you haven't already.
-2. Log in to PostgreSQL as the superuser:
-
-   ```
-   sudo -u postgres psql
-   ```
-
-3. Create a new database:
-
-   ```sql
-   CREATE DATABASE surge_pricing;
-   ```
-
-4. Create a new user:
-
-   ```sql
-   CREATE USER surge_user WITH ENCRYPTED PASSWORD 'your_password';
-   ```
-
-5. Grant privileges to the new user:
-
-   ```sql
-   GRANT ALL PRIVILEGES ON DATABASE surge_pricing TO surge_user;
-   ```
-
-6. Exit PostgreSQL:
-
-   ```
-   \q
-   ```
-
-### Redis Setup
-
-1. Install Redis:
-
-   - For macOS (using Homebrew):
-     ```
-     brew install redis
-     ```
-   - For Windows:
-     Download and install Redis from the official website: https://redis.io/download
-   - For Linux:
-     Use your distribution's package manager. For example, on Ubuntu:
-     ```
-     sudo apt-get install redis-server
-     ```
-
-2. Start the Redis server:
-
-   - For macOS and Linux:
-     ```
-     redis-server
-     ```
-   - For Windows:
-     Run the `redis-server.exe` file from the installation directory
-
-3. Verify Redis is running:
-   ```
-   redis-cli ping
-   ```
-   If Redis is running correctly, it should return "PONG".
-
-### Obtaining Weather API Key
+## Obtaining Weather API Key
 
 1. Sign up for a RapidAPI account at https://rapidapi.com/
 2. Subscribe to the "Open Weather Map" API: https://rapidapi.com/community/api/open-weather-map/
@@ -92,7 +25,27 @@ This project implements a dynamic surge pricing system for a food delivery platf
    cd dynamic-surge-pricing
    ```
 
-2. Backend Setup:
+2. Docker Setup:
+
+  Create a .env file in the Root directory with the following variables:
+
+  ```
+  POSTGRE_DB=surge_pricing
+  POSTGRE_USER=your_user
+  POSTGRE_PASS=your_password
+  POSTGRE_PORT=5432
+  ```
+
+  Build and Start the docker containers using docker-compose file:
+
+  ```bash
+  docker compose --build up -d
+    
+  ```
+
+  This start postgresql and redis containers.
+
+3. Backend Setup:
 
    ```
    cd Backend
@@ -100,6 +53,8 @@ This project implements a dynamic surge pricing system for a food delivery platf
    ```
 
    Create a `.env` file in the Backend directory with the following variables:
+
+   Variables **POSTGRE_DB**, **POSTGRE_USER**, **POSTGRE_PASS**, **POSTGRE_PORT** should be same as Root directory `.env`.
 
    ```
    PORT=3000
@@ -118,7 +73,7 @@ This project implements a dynamic surge pricing system for a food delivery platf
    node server.js
    ```
 
-3. Frontend Setup:
+4. Frontend Setup:
 
    ```
    cd ../frontend
@@ -132,6 +87,15 @@ The API documentation is available via Swagger UI. To access it:
 
 1. Start the backend server.
 2. Open a web browser and navigate to `http://localhost:3000/api-docs`.
+
+## User Sign Up and Login
+
+To add mock data to test this project you need to signup and login to get a jwt_token for authentication.
+
+1. Create a user with manager or admin role using Swagger UI signup endpoint or frontend UI Signup directly.
+2. Login with those credentials using Swagger UI login endpoint and the token is given in response.
+3. There's an authorize field at the top right corner, Click and copy paste the token in that field.
+4. Now you can add mockup data after authorization.
 
 ## Adding Mock Data
 
